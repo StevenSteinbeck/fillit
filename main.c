@@ -6,33 +6,11 @@
 /*   By: stestein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 14:06:23 by stestein          #+#    #+#             */
-/*   Updated: 2018/03/14 19:23:59 by stestein         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:41:10 by stestein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*char	*getdata(void)
-{
-	char *buffer = 0;
-	long length;
-	char *str;
-	char *name;
-	int i;
-	FILE * f = fopen ("tetriminos.txt", "r");
-
-	if (f)
-	{
-  		fseek (f, 0, SEEK_END);
-  		length = ftell (f);
-  		fseek (f, 0, SEEK_SET);
-  		buffer = malloc (length);
-  		if (buffer)
-    			fread (buffer, 1, length, f);
-  		fclose (f);
-	}
-	return (buffer);
-}*/
 
 void	ft_error(void)
 {
@@ -66,14 +44,21 @@ char	*ft_reader(char *file)
 int		main(int argc, char **argv)
 {
 	char	*str;
-	int		result;
+	int		basic_check;
+	char 	*shapes;
+	char	*bank;
 
 	if (argc != 2)
 		ft_error();
-	result = 0;
 	str = ft_reader(argv[1]);
-	result = input_checker(str);
-	
-	printf("%i\n", result);
+	basic_check = input_checker(str);
+	if (basic_check != 1)
+		ft_error();
+	shapes = shape_detector(str);
+	if (!(bank = store_input(shapes)))
+		ft_error();
+
+
+	printf("%s\n", bank);
 	return (0);
 }
