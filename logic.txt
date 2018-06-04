@@ -1,0 +1,16 @@
+Map optimizer:
+
+1) Use full size map.
+
+2) While next piece exists, place next (even if multi-lined) adjacent to previous.
+
+3) Stop condition checks for true square
+
+4) 
+
+
+///////////////////////////////////////
+
+use advanced checker to check for tetrimino of dots, if found, place tetrimino we have that matches that piece.
+
+
