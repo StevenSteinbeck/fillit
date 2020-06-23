@@ -5,46 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stestein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/14 14:07:52 by stestein          #+#    #+#             */
-/*   Updated: 2018/04/10 12:42:19 by stestein         ###   ########.fr       */
+/*   Created: 2018/03/11 10:22:49 by stestein          #+#    #+#             */
+/*   Updated: 2018/04/11 13:50:41 by stestein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# define READER int fd; int read_report; int i; char tmp[546]; char buffer[1];
+# define STORAGE int i; int j = 0; char c = 64;
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include "./libft/libft.h"
 
-void	ft_error(void);
-char	*ft_reader(char *file);
-int		input_checker(char *str); 
-int		block_counter(char *str);
-int		hash_counter(char *str);
-int		newline_checker(char *str);
-int		char_checker(char *str);
-char	*shape_detector(char *str, int i);
-char	*store_input(char *str);
-char	*shape_store(char *str);
-char 	*copyer(char *str, char *s);
-char	**store_pieces(char *str, int blocks, char *bank);
-char	**mapgen(int size);
-int		ft_sqrt(int n);
-char	*convert(char *str, int a);
-char	**map_starter(char **map, char **store, int blocks);
-//map_converter converts 2d array to 1d string
-//char	*map_converter(char **map);
-int		best_tetri(char **str);
-int		letter_change_detector(char **str, int row, int i, char letter);
-int	nstrlen(char *str);
-char	**map_placer(char **map_start, char **store, int blocks, char *str);
-char	*advanced_placer(char **str, int row, int i, int skipper);
-char 	**twod_store(char *str);
-char	**twod_convert(char **str, int a);
-int		first_piece_selector(char **store, int blocks, int best_case);
-int		letter_detector(int i);
+typedef struct		s_blk
+{
+	char			c;
+	char			*str;
+	int				x[4];
+	int				y[4];
+	struct s_blk	*next;
+}					t_blk;
+
+void				ft_error(void);
+char				*ft_reader(char *file);
+t_blk				*ft_storage(char *str);
+int					ft_basic_check(char *reading);
+void				ft_supercheck(char *s);
+t_blk				*ft_default_xy(t_blk *block);
+int					ft_max_size(t_blk *block);
+char				**ft_fill_empty(char **tab, int max);
+t_blk				*ft_update_xy(t_blk *block, int x, int y);
+char				**ft_result(t_blk *block, int max);
+char				*ft_strndup(const char *s, size_t n);
 
 #endif

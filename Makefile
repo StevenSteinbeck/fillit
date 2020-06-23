@@ -6,7 +6,7 @@
 #    By: stestein <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/19 10:58:31 by stestein          #+#    #+#              #
-#    Updated: 2018/04/09 15:43:29 by stestein         ###   ########.fr        #
+#    Updated: 2018/04/23 14:49:52 by stestein         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,21 +35,16 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = fillit.h
 
-SRC_NAME = main.c		basic_checker.c		advanced_checker.c		bank.c		storage.c	mapper.c	perfect_size.c		map_updater.c		map_converter.c		adv_bank.c		advanced_placer.c		
+SRC_NAME =	checker.c	coord.c		main.c		output.c	solver.c	ft_strndup.c
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): #$(OBJ)
 	@echo
 	@make -C $(LFT_PATH)
-	@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft
+	@$(CC) $(CC_FLAGS) -Iincludes/ -L $(LFT_PATH) -lft  -o $(NAME) $(SRC)
+	@#@$(CC) -o $(NAME) $(OBJ) -I$(INC_PATH) -L $(LFT_PATH) -lft
 	@echo "$(OKC)FILLIT:\t\tFillit ready$(NOC)"
-
-
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir -p $(OBJ_PATH)
-	@$(CC) $(CC_FLAGS) $(INC) -g -o $@ -c $<
-	@echo -n =
 
 clean:
 	@make -C $(LFT_PATH) clean

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   elliotmap.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stestein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 14:21:20 by stestein          #+#    #+#             */
-/*   Updated: 2018/03/23 09:22:24 by stestein         ###   ########.fr       */
+/*   Created: 2018/02/21 09:05:57 by stestein          #+#    #+#             */
+/*   Updated: 2018/02/22 16:13:21 by stestein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-char	**mapgen(int size)
+char	*ft_strchr(const char *s, int c)
 {
-	char 	**map;
-	int		i;
-	int 	j;
+	unsigned i;
 
-	j = size;
 	i = 0;
-	map = ft_memalloc(sizeof(char *) * size + 1);
-	while (i < size)
+	while (s[i] != '\0')
 	{
-		map[i] = ft_strnew(size);
-		map[i] = ft_memset(map[i], 46, size);
+		if (s[i] == c)
+			return ((char*)&s[i]);
 		i++;
 	}
-	map[i] = NULL;
-	return (map);
+	if (s[i] == c)
+		return ((char*)&s[i]);
+	return (NULL);
 }

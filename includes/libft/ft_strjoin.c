@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perfect_size.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stestein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 12:57:19 by stestein          #+#    #+#             */
-/*   Updated: 2018/03/20 13:12:51 by stestein         ###   ########.fr       */
+/*   Created: 2018/02/26 15:21:08 by stestein          #+#    #+#             */
+/*   Updated: 2018/03/13 10:28:39 by stestein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_sqrt(int	n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int i;
+	char	*str;
+	int		i;
+	int		c;
 
-	i = 1;
-	while (i * i < n)
+	i = 0;
+	c = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	str = (char *)malloc(sizeof(*str) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (str == NULL)
+		return (NULL);
+	while (s1[i])
+	{
+		str[i] = s1[i];
 		i++;
-	if (i < 4)
-		return (4);
-	return (i);
-}	
+	}
+	while (s2[c])
+	{
+		str[i + c] = s2[c];
+		c++;
+	}
+	str[i + c] = '\0';
+	return (str);
+}
