@@ -1,5 +1,5 @@
 # FillIt
-A tetrimino suqare solver
+A tetrimino smallest square solver
 
 To Use:
 
